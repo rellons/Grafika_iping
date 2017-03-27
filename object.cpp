@@ -48,34 +48,44 @@ class Object{
     }
 
     void drawObject(){
-      list<Point>::iterator it,it2;
-      it = Points.begin();
-      it2 = ++(Points.begin());
-      for (it,it2; it != Points.end(); ++it,++it2){
-          list<Point>::iterator Point1 = it;
-          list<Point>::iterator Point2 = it2;
-          if(Point2 == Points.end()){
-            Point2 = Points.begin();
-          }
-          l.insertLine((*Point1).getX(), (*Point1).getY(), (*Point2).getX(), (*Point2).getY(), 255, 255 , 255);
+      if(!hide){
+        list<Point>::iterator it,it2;
+        it = Points.begin();
+        it2 = ++(Points.begin());
+        for (it,it2; it != Points.end(); ++it,++it2){
+            list<Point>::iterator Point1 = it;
+            list<Point>::iterator Point2 = it2;
+            if(Point2 == Points.end()){
+              Point2 = Points.begin();
+            }
+            l.insertLine((*Point1).getX(), (*Point1).getY(), (*Point2).getX(), (*Point2).getY(), 255, 255 , 255);
+        }
       }
     }
 };
 
-int main() {
+int DrivermainObject() {
+
+  // nerima masukan point
   Point p1 (100, 200);
   Point p2 (100, 300);
   Point p3 (200, 300);
   Point p4 (200, 200);
+
+  //construct list of point dari point input
+  list<Point> p;
+  p.push_back(p1);
+  p.push_back(p2);
+  p.push_back(p3);
+  p.push_back(p4);
+
   system("clear");
-  Object o ("object1");
+
+  // construct object dari list of point
+  Object o ("object1", p);
   cout << o.getName() << endl;
 
-  o.addPoint(p1);
-  o.addPoint(p2);
-  o.addPoint(p3);
-  o.addPoint(p4);
-
+  // draw point menjadi object
   o.drawObject();
 
   return 0;
