@@ -15,12 +15,12 @@ class framebuffer {
 
 	private:
 		int fbfd = 0;
-	    struct fb_var_screeninfo vinfo;
-	    struct fb_fix_screeninfo finfo;
-	    long int screensize = 0;
-	    char *fbp = 0;
-	    int x = 0, y = 0;
-	    long int location = 0;
+    struct fb_var_screeninfo vinfo;
+    struct fb_fix_screeninfo finfo;
+    long int screensize = 0;
+    char *fbp = 0;
+    int x = 0, y = 0;
+    long int location = 0;
 
 	public:
 		framebuffer() {
@@ -61,10 +61,10 @@ class framebuffer {
             location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                        (y+vinfo.yoffset) * finfo.line_length;
             if (vinfo.bits_per_pixel == 32) {
-                *(fbp + location + 0) = blue;        
-                *(fbp + location + 1) = green;     
-                *(fbp + location + 2) = red;    
-                *(fbp + location + 3) = 0;      
+                *(fbp + location + 0) = blue;
+                *(fbp + location + 1) = green;
+                *(fbp + location + 2) = red;
+                *(fbp + location + 3) = 0;
             } else  {
                 int b = blue;
                 int g = green;
@@ -72,7 +72,7 @@ class framebuffer {
                 unsigned short int t = r<<11 | g << 5 | b;
                 *((unsigned short int*)(fbp + location)) = t;
             }
-		}	
+		}
 };
 
 #endif
