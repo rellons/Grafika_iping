@@ -1,9 +1,9 @@
 #include "object.cpp"
 
-class Layer(){
+class Layer{
   private :
     list<Object> Objects;
-    
+
 
   public :
     Layer(){}
@@ -18,12 +18,12 @@ class Layer(){
     void deleteObject(string ObjectName){
       list<Object>::iterator it;
 
-      for (it=mylist.begin(); it != mylist.end(); ++it){
-        if ((*it).getName == ObjectName) {
+      for (it=Objects.begin(); it != Objects.end(); ++it){
+        if ((*it).getName() == ObjectName) {
             Objects.erase(it);
         }
       }
     }
 
 
-}
+};
